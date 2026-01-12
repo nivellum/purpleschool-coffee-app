@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import Button from "../shared/components/button/Button";
 
 import {
   Sora_400Regular,
@@ -26,9 +27,7 @@ export default function Index() {
           <Text style={styles.subtitle}>
             Свежие зёрна, настоящая арабика и бережная обжарка
           </Text>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>Начать</Text>
-          </Pressable>
+          <Button title="Начать"/>
         </View>
       </View>
     );
@@ -62,22 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 24,
     fontFamily: "Sora_400Regular",
-  },
-  button: {
-    backgroundColor: "#C67C4E",
-    textAlign: "center",
-    padding: 21,
-    borderRadius: 16,
-    display: "flex",
-    alignItems: "center",
-    justifyContent:"center"
-  },
-  buttonText: {
-    textAlign: "center",
-    color: "#fff",
-    fontFamily: "Sora_600SemiBold",
-    fontSize: 16,
-    lineHeight: 20
   },
   image: {
     width: "100%",
