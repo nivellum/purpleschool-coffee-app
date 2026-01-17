@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Animated, StyleSheet, Text, View } from "react-native";
 import Button from "../shared/components/button/Button";
 
 import {
@@ -7,6 +7,7 @@ import {
   Sora_600SemiBold,
   useFonts,
 } from "@expo-google-fonts/sora";
+import { useEffect, useRef } from "react";
 
 const coffeeImage = require("../assets/coffee.png");
 
@@ -16,21 +17,59 @@ export default function Index() {
     Sora_600SemiBold,
   });
 
-  if (!fontLoaded) return null;
-  else
-    return (
-      <View style={styles.container}>
-        <Image style={styles.image} source={coffeeImage} />
+  const animatedHeadingTranslate = useRef(new Animated.Value(-100)).current;
+  const animatedHeadingOpacity = useRef(new Animated.Value(0)).current;
 
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>Одно из самых вкусных кофе в городе!</Text>
-          <Text style={styles.subtitle}>
-            Свежие зёрна, настоящая арабика и бережная обжарка
-          </Text>
-          <Button title="Начать"/>
+  const animateHeading = () => {
+    Animated.parallel([
+      Animated.timing(animatedHeadingTranslate, {
+        toValue: 0,
+        duration: 1000,
+        useNativeDriver: true
+      }),
+      Animated.timing(animatedHeadingOpacity, {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }),
+    ]).start();
+  }
+
+  useEffect(() => {
+    animateHeading();
+
+    return () => {
+      animatedHeadingTranslate.stopAnimation();
+      animatedHeadingOpacity.stopAnimation();
+    }
+  }, [])
+
+  try {
+    if (!fontLoaded) return null;
+    else
+      return (
+        <View style={styles.container}>
+          <Image style={styles.image} source={coffeeImage} />
+
+          <View style={styles.textContainer}>
+            <Animated.Text style={[styles.title,
+            {
+              transform: [{ translateY: animatedHeadingTranslate }],
+              opacity: animatedHeadingOpacity,
+            }
+            ]}>
+              Одно из самых вкусных кофе в городе!
+            </Animated.Text>
+            <Text style={styles.subtitle}>
+              Свежие зёрна, настоящая арабика и бережная обжарка
+            </Text>
+            <Button title="Начать" />
+          </View>
         </View>
-      </View>
-    );
+      );
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     zIndex: 1,
     flexShrink: 0
-    
+
   },
   title: {
     color: "#fff",
