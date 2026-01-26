@@ -9,7 +9,7 @@ import {
 	Animated,
 	GestureResponderEvent,
 } from "react-native";
-import { Color, FontSize, Radii, Spacing } from "../../tokens";
+import { Color, FontFamily, FontSize, Radii, Spacing } from "../../tokens";
 
 type ButtonProps = {
 	title: string;
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 	text: {
 		textAlign: "center",
 		color: Color.white,
-		fontFamily: "Sora_600SemiBold",
+		fontFamily: FontFamily.bold,
 		fontSize: FontSize.md,
 		lineHeight: Spacing.md,
 	},

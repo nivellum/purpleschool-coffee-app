@@ -1,7 +1,8 @@
 {
-  "extends": "expo/tsconfig.base",
-  "compilerOptions": {
-    "strict": true
-  },
-  "include": ["modules.d.ts"]
+	"extends": "expo/tsconfig.base",
+	"compilerOptions": {
+		"strict": true,
+		"skipLibCheck": true
+	},
+	"include": ["modules.d.ts"]
 }

@@ -1,18 +1,13 @@
 import { Image, Animated, StyleSheet, Text, View } from "react-native";
 import Button from "../shared/components/button/Button";
 
-import { Sora_400Regular, Sora_600SemiBold, useFonts } from "@expo-google-fonts/sora";
 import { useEffect, useRef } from "react";
-import { Color, FontSize, Spacing } from "../shared/tokens";
+import { Color, FontFamily, FontSize, Spacing } from "../shared/tokens";
+import { Link } from "expo-router";
 
-const coffeeImage = require("../assets/coffee.png");
+const coffeeImage = require("../assets/images/coffee.png");
 
-export default function Index() {
-	const [fontLoaded] = useFonts({
-		Sora_400Regular,
-		Sora_600SemiBold,
-	});
-
+export default function StartScreen() {
 	const animatedHeadingTranslate = useRef(new Animated.Value(-100)).current;
 	const animatedHeadingOpacity = useRef(new Animated.Value(0)).current;
 
@@ -39,36 +34,30 @@ export default function Index() {
 			animatedHeadingOpacity.stopAnimation();
 		};
 	}, []);
-
-	try {
-		if (!fontLoaded) return null;
-		else
-			return (
-				<View style={styles.container}>
-					<Image style={styles.image} source={coffeeImage} />
-
-					<View style={styles.textContainer}>
-						<Animated.Text
-							style={[
-								styles.title,
-								{
-									transform: [{ translateY: animatedHeadingTranslate }],
-									opacity: animatedHeadingOpacity,
-								},
-							]}
-						>
-							Одно из самых вкусных кофе в городе!
-						</Animated.Text>
-						<Text style={styles.subtitle}>
-							Свежие зёрна, настоящая арабика и бережная обжарка
-						</Text>
-						<Button title="Начать" />
-					</View>
-				</View>
-			);
-	} catch (error) {
-		console.log(error);
-	}
+	return (
+		<View style={styles.container}>
+			<Image style={styles.image} source={coffeeImage} />
+			<View style={styles.textContainer}>
+				<Animated.Text
+					style={[
+						styles.title,
+						{
+							transform: [{ translateY: animatedHeadingTranslate }],
+							opacity: animatedHeadingOpacity,
+						},
+					]}
+				>
+					Одно из самых вкусных кофе в городе!
+				</Animated.Text>
+				<Text style={styles.subtitle}>
+					Свежие зёрна, настоящая арабика и бережная обжарка
+				</Text>
+				<Link asChild href="/catalog">
+					<Button title="Начать" />
+				</Link>
+			</View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
@@ -90,14 +79,14 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: FontSize.xl,
 		marginBottom: Spacing.xs,
-		fontFamily: "Sora_600SemiBold",
+		fontFamily: FontFamily.bold,
 	},
 	subtitle: {
 		color: Color.silver,
 		textAlign: "center",
 		fontSize: FontSize.sm,
 		marginBottom: Spacing.md,
-		fontFamily: "Sora_400Regular",
+		fontFamily: FontFamily.regular,
 	},
 	image: {
 		width: "100%",

@@ -46,3 +46,10 @@ export const Spacing = {
 	lg: 30,
 	xl: 40,
 };
+
+export const FontFamily = {
+	thin: "LineSeedJpThin",
+	regular: "LineSeedJpRegular",
+	bold: "LineSeedJpBold",
+	extraBold: "LineSeedJpExtraBold",
+};
