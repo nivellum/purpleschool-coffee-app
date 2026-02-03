@@ -1,5 +1,5 @@
-import Index from "./pages/index";
+import Index from "./app/index";
 
 export default function App() {
-  return <Index />
+	return <Index />;
 }

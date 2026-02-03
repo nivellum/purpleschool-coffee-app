@@ -1,0 +1,25 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit" // ← основной ключ!
+		// или "true" — тоже работает, но "explicit" предпочтительнее в 2025–2026
+	},
+
+	// Чтобы ESLint работал только на нужных файлах
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"vue",
+		"html"
+	],
+
+	// Полезно, если много проектов
+	"eslint.workingDirectories": [{ "mode": "auto" }],
+	"[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+	"[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+	"[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+	"[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
