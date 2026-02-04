@@ -1,16 +1,16 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
-	const insets = useSafeAreaInsets();
+	// const insets = useSafeAreaInsets();
 
 	const [loaded, error] = useFonts({
-		LineSeedJpBold: require("../assets/fonts/LINESeedJP-Bold.ttf"),
-		LineSeedJpExtraBold: require("../assets/fonts/LINESeedJP-ExtraBold.ttf"),
-		LineSeedJpRegular: require("../assets/fonts/LINESeedJP-Regular.ttf"),
-		LineSeedJpThin: require("../assets/fonts/LINESeedJP-Thin.ttf"),
+		LineSeedJpBold: require("../shared/assets/fonts/LINESeedJP-Bold.ttf"),
+		LineSeedJpExtraBold: require("../shared/assets/fonts/LINESeedJP-ExtraBold.ttf"),
+		LineSeedJpRegular: require("../shared/assets/fonts/LINESeedJP-Regular.ttf"),
+		LineSeedJpThin: require("../shared/assets/fonts/LINESeedJP-Thin.ttf"),
 	});
 
 	if (error) console.log(error);
@@ -20,9 +20,7 @@ export default function RootLayout() {
 		<>
 			<StatusBar style="light" backgroundColor="#000000" />
 			<SafeAreaProvider>
-				<Stack
-					screenOptions={{ headerShown: false, contentStyle: { paddingTop: insets.top } }}
-				>
+				<Stack screenOptions={{ headerShown: false, contentStyle: { paddingTop: 0 } }}>
 					<Stack.Screen name="index" />
 				</Stack>
 			</SafeAreaProvider>

@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { Color, FontFamily, FontSize, Spacing } from "../shared/tokens";
 import { Link } from "expo-router";
 
-const coffeeImage = require("../assets/images/coffee.png");
+const coffeeImage = require("../shared/assets/images/coffee.png");
 
 export default function StartScreen() {
 	const animatedHeadingTranslate = useRef(new Animated.Value(-100)).current;
